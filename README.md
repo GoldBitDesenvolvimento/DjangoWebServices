@@ -1,7 +1,11 @@
 # DjangoWebServices
 Sistema de webservices, utilizando Django
 
-# Tecnologias usadas
+## Como utilizar
+Para baixar os pacotes usados no projeto execute os seguintes comandos:
 
-Python 2.7.6
-Django 1.8.0
+'virtualenv --no-site-packages env
+source env/bin/activate (Linux)
+env\Scripts\activate (Windows)
+pip install -r requirements.txt
+'
