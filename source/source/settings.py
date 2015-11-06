@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-
+import platform
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -75,12 +75,16 @@ WSGI_APPLICATION = 'source.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
+senha = ''
+if 'Gabriel' in platform.node():
+    senha = 'admin'
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'goldbit_odonto',
         'USER': 'root',
-        'PASSWORD': 'admin',
+        'PASSWORD': senha,
         'HOST': '127.0.0.1',
     }
 }
