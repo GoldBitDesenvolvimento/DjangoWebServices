@@ -1,15 +1,21 @@
 from django.db import models
+#models.ForeignKey(Publisher)
+#models.ManyToManyField(Author)
 
 # Create your models here.
-class endereco(models.Model):
+class Endereco(models.Model):
+    pessoa = models.OneToOneField(Pessoa)
+
     rua = models.CharField(max_length=50)
     bairro = models.CharField(max_length=50)
     estado = models.CharField(max_length=50)
     pais = models.CharField(max_length=50)
     CEP = models.CharField(max_length=50)
+    
 
-class pessoa(models.Model):
-    #usuario = models.CharField(max_length=50)
+class Pessoa(models.Model):
+    usuario = models.OneToOneField(Usuario)
+
     nome = models.CharField(max_length=50)
     tiposangue = models.CharField(max_length=50)
     cpf = models.CharField(max_length=50)
@@ -17,17 +23,22 @@ class pessoa(models.Model):
     telefone = models.CharField(max_length=50)
     celular = models.CharField(max_length=50)
     dataNascimento = models.DateField()
-    models.ForeignKey(Publisher)
-    models.ManyToManyField(Author)
-
+    
 class Usuario(models.Model):
-	usuario = models.CharField(max_length=50)
+	pessoa = models.OneToOneField(Pessoa)
+
+    usuario = models.CharField(max_length=50)
 	senha = models.CharField(max_length=50)
 	email = models.EmailField()
+    
+
+    def __unicode__(self):
+        return self.email
 
 # Create your models here.
 class Anamnese(models.Model):
-    usuario = models.CharField(max_length=50)
+    usuario = models.OneToOneField(Usuario)
+
     p01 = models.CharField(max_length=4)
     p01b = models.CharField(max_length=255)
     p02 = models.CharField(max_length=4)
