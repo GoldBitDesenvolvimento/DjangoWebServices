@@ -1,0 +1,9 @@
+{% if pessoas %}
+    <ul>
+		{% for pessoa in pessoas %}
+			<li>{{ pessoa.nome }}</li>	
+		{% endfor %}
+	</ul>
+{% else %}
+    Nenhuma pessoa encontrada.
+{% endif %}

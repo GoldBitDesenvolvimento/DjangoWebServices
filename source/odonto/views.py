@@ -1,11 +1,11 @@
 from django.shortcuts import render
-from .forms import ContactForm ,UserForm
+from .forms import ContactForm, UserForm
 from django.core.mail import send_mail
 from django.conf import settings
-
-
-# Create your views here.
-
+from .models import *
+from django.views.decorators.csrf import csrf_exempt 
+from django.core import serializers
+from django.http import HttpResponse
 
 def home(request):
 	
@@ -16,8 +16,6 @@ def home(request):
 		"title":title,
 		"form":form
 	}
-
-	
 
 	if form.is_valid():
 		#form.save()
@@ -70,6 +68,19 @@ def contact(request):
 		"form":form
 	}
 	return render(request,"forms.html",context)
+
+@csrf_exempt 
+def exemploPost(request):
+	pessoa = ''
+	if 'pessoa' in request.POST:
+		pessoa = request.POST['pessoa']
+		pessoa = Pessoa.objects.get(nome__contains = pessoa)
+	if pessoa == '':
+		data = serializers.serialize("json", [])
+	else:			
+		data = serializers.serialize("json", [pessoa])
+		
+	return HttpResponse(data)
 
 
 def getPaciente(request):
