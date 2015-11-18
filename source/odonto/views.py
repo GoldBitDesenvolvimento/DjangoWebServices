@@ -75,25 +75,25 @@ def exemploPost(request):
 	
 	if 'pessoa' in request.POST:
 		pessoa = request.POST['pessoa']
-		pessoa = Pessoa.objects.get(nome__contains = str(pessoa))	
-	if pessoa == '':
-		data = serializers.serialize("json", [])
+		pessoa = Pessoa.objects.filter(nome__contains = str(pessoa))	
+	if not pessoa:
+		data = '[{"Error": "Nome Invalido"}]'
 	else:			
-		data = serializers.serialize("json", [pessoa])
+		data = serializers.serialize("json", [pessoa.get()])
 	
 	return HttpResponse(data)
 
 @csrf_exempt 
 def getPaciente(request):
 	pessoa = ''
-	
+
 	if 'id' in request.POST:
 		pessoa = request.POST['id']
-		pessoa = Pessoa.objects.get(pk = int(str(pessoa))  )	
-	if pessoa == '':
-		data = serializers.serialize("json", [])
+		pessoa = Pessoa.objects.filter(pk = int(str(pessoa)))	
+	if not pessoa:
+		data = '[{"Error": "Id Invalido"}]'
 	else:			
-		data = serializers.serialize("json", [pessoa])
+		data = serializers.serialize("json", [pessoa.get()])
 	
 	return HttpResponse(data)
 
