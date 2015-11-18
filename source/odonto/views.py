@@ -85,13 +85,16 @@ def exemploPost(request):
 
 
 def getPaciente(request):
-	if request.method == "POST":
-		print request.POST
-		print 'sddddddd'
-		request.POST['email']
+	pessoa = ''
 	
+	if 'id' in request.POST:
+		idpessoa = request.POST['id']
+		idpessoa = Pessoa.objects.get(pk = int(str(pessoa))	
+	if pessoa == '':
+		data = serializers.serialize("json", [])
+	else:			
+		data = serializers.serialize("json", [pessoa])
 	
-	print "aeee"
-	return render(request,"home.html",context)
+	return HttpResponse(data)
 
 	
