@@ -72,14 +72,15 @@ def contact(request):
 @csrf_exempt 
 def exemploPost(request):
 	pessoa = ''
+	
 	if 'pessoa' in request.POST:
 		pessoa = request.POST['pessoa']
-		pessoa = Pessoa.objects.get(nome__contains = pessoa)
+		pessoa = Pessoa.objects.get(nome__contains = str(pessoa))	
 	if pessoa == '':
 		data = serializers.serialize("json", [])
 	else:			
 		data = serializers.serialize("json", [pessoa])
-		
+	
 	return HttpResponse(data)
 
 
