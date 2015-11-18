@@ -78,7 +78,9 @@ WSGI_APPLICATION = 'source.wsgi.application'
 senha = ''
 if 'Gabriel' in platform.node():
     senha = 'admin'
-
+elif 'ip-172-31-39-134' in platform.node():
+    senha = '123gold123'
+    
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
