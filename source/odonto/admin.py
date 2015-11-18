@@ -1,7 +1,7 @@
 from django.contrib import admin
 #from .forms import SignUpForm
 from .models import SignUp
-from .models import User
+from .models import *
 # Register your models here.
 
 '''
@@ -14,3 +14,4 @@ class SignUpAdmin(admin.modelAdmin):
 
 #admin.site.register(SignUp,SignUpAdmin)
 admin.site.register(User)
+admin.site.register(Pessoa)
