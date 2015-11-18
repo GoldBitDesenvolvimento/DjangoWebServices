@@ -89,7 +89,7 @@ def getPaciente(request):
 	
 	if 'id' in request.POST:
 		pessoa = request.POST['id']
-		pessoa = Pessoa.objects.get(pk = int(str(pessoa))	
+		pessoa = Pessoa.objects.get(pk = int(str(pessoa))   )	
 	if pessoa == '':
 		data = serializers.serialize("json", [])
 	else:			
