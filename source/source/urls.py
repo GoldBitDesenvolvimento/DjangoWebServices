@@ -20,4 +20,5 @@ from odonto.views import *
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^exemploPost/', exemploPost),
+    url(r'^getPaciente/', getPaciente),
 ]
