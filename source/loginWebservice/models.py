@@ -1,23 +1,18 @@
 from django.db import models
 
 # Create your models here.
-class SignUp(models.Model):
-    email = models.EmailField()
-    full_name = models.CharField(max_length=120)
-    timestamp = models.DateTimeField(auto_now=True,auto_now_add = False)
-    updated = models.DateTimeField(auto_now=False,auto_now_add = True)
 
-    def __unicode__(self): #__str__
-        return self.email
 
 
 class User(models.Model):
     password = models.CharField(max_length=50)
     email = models.EmailField()
+    def __unicode__(self): #__str__
+        return self.email
 
 class Person(models.Model):
     user = models.OneToOneField(User)
-
+    address = models.OneToOneField(Address)
     name = models.CharField(max_length=50)
     bloody_type = models.CharField(max_length=50)
     cpf = models.CharField(max_length=50)
@@ -28,9 +23,7 @@ class Person(models.Model):
     def __unicode__(self):
 		return self.name
 
-class Endereco(models.Model):
-    person = models.OneToOneField(Person)
-
+class Address(models.Model):
     street = models.CharField(max_length=50)
     neighborhood = models.CharField(max_length=50)
     state = models.CharField(max_length=50)
