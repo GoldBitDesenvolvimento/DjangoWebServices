@@ -1,5 +1,5 @@
 from django.contrib import admin
-
+from loginWebservice.models import *
 # Register your models here.
 admin.site.register(SignUp)
 admin.site.register(User)
