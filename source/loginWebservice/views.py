@@ -18,7 +18,7 @@ def getLoginWebservice(request):
 		else:			
 			user_password = str(request.POST['password'])
 			if user_password == user.get().password:
-				data = '[{"return": "valid"}]'
+				data = serializers.serialize("json", [user.get()])
 			else:
 				data = '[{"return": "invalid:Password Erro"}]'	
 	else:
