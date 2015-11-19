@@ -9,24 +9,28 @@ from django.http import HttpResponse
 
 @csrf_exempt 
 def getLoginWebservice(request):
-	user = ''
-	
+	user = ''	
 	if 'email' in request.POST and 'password' in request.POST:
 		user = User.objects.filter(email__contains = str(request.POST['email']))
+		print str(user.email)
+
+		'''
 		if user == '':
 			data = serializers.serialize("json", [])
 		else:			
 			user_password = str(request.POST['password'])
-			print str(user.object.get('email'))
+			print str(user.email)
 			data = 'ok'#serializers.serialize("json", [user])
-			'''if user_password == user.get('password'):
+			if user_password == user.get('password'):
 				data = serializers.serialize("json", [])
 				print 'aeee'
 			else:
-				data = serializers.serialize("json", [])	'''
+				data = serializers.serialize("json", [])	
+			data = serializers.serialize("json", [])
 	else:
 		data = serializers.serialize("json", [])
-	
+	'''
+	data = serializers.serialize("json", user)
 	return HttpResponse(data)
 
 # Create your views here.
