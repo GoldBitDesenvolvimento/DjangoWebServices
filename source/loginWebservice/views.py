@@ -14,15 +14,15 @@ def getLoginWebservice(request):
 		user = User.objects.filter(email__contains = str(request.POST['email']))				
 		
 		if not user :
-			data = '[{"return": "invalid"}]'		
+			data = '[{"return": "invalid:User do not exits"}]'		
 		else:			
 			user_password = str(request.POST['password'])
 			if user_password == user.get().password:
 				data = '[{"return": "valid"}]'
 			else:
-				data = '[{"return": "invalid"}]'	
+				data = '[{"return": "invalid:Password Erro"}]'	
 	else:
-		data = '[{"return": "invalid"}]'	
+		data = '[{"return": "invalid: Erro parameters on post"}]'	
 	
 	return HttpResponse(data)
 
