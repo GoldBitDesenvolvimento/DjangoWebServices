@@ -11,26 +11,19 @@ from django.http import HttpResponse
 def getLoginWebservice(request):
 	user = ''	
 	if 'email' in request.POST and 'password' in request.POST:
-		user = User.objects.filter(email__contains = str(request.POST['email']))
-		print str(user.email)
-
-		'''
-		if user == '':
-			data = serializers.serialize("json", [])
+		user = User.objects.filter(email__contains = str(request.POST['email']))				
+		
+		if not user :
+			data = '[{"return": "invalid"}]'		
 		else:			
 			user_password = str(request.POST['password'])
-			print str(user.email)
-			data = 'ok'#serializers.serialize("json", [user])
-			if user_password == user.get('password'):
-				data = serializers.serialize("json", [])
-				print 'aeee'
+			if user_password == user.get().password:
+				data = '[{"return": "valid"}]'
 			else:
-				data = serializers.serialize("json", [])	
-			data = serializers.serialize("json", [])
+				data = '[{"return": "invalid"}]'	
 	else:
-		data = serializers.serialize("json", [])
-	'''
-	data = serializers.serialize("json", user)
+		data = '[{"return": "invalid"}]'	
+	
 	return HttpResponse(data)
 
 # Create your views here.
