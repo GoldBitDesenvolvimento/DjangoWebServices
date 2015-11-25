@@ -29,6 +29,11 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
+EMAIL_HOST = "mail.goldbit.com.br"
+EMAIL_HOST_USER = "goldbit"
+EMAIL_HOST_PASSWORD ="VG77~}*Rc^qB-6%"
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 
 INSTALLED_APPS = (
     'django.contrib.admin',
