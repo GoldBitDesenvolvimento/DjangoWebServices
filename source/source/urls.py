@@ -5,5 +5,7 @@ from loginWebservice.views import *
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^getLoginWebservice/', getLoginWebservice)
+    url(r'^getLoginWebservice/', getLoginWebservice),
+    url(r'^forgotPassword/', forgotPassword)
+
 ]
